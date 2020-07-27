@@ -1,0 +1,32 @@
+<br><br>
+<h1>Create transaction</h1>
+
+<br><br>
+
+
+<div class="transaction-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+    <mat-card class="box">
+        <mat-card-header>
+            <mat-card-title>Create Transaction</mat-card-title>
+        </mat-card-header>
+        <br><br>
+        <form class="example-form" [formGroup]="transactionForm">
+            <mat-card-content>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="To account" formControlName="toAccountId" required>
+                    <mat-error *ngIf="transactionForm.get('toAccount').invalid">{{toAccountGetErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Amount" formControlName="amount" required>
+                        <mat-error *ngIf="transactionForm.get('amount').invalid">{{amountGetErrorMessage()}}</mat-error>
+             </mat-form-field>               
+            </mat-card-content>
+            <button mat-stroked-button color="accent" class="btn-block" (click)="createTransaction()">Send</button>
+            <br>
+            <a class='nav-link' [routerLink]="['/accountDetail/:accountId']">Back to your account</a>
+        </form>
+
+    </mat-card>
+
+</div>

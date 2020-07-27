@@ -1,0 +1,45 @@
+<br><br><br><br><br>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+        <mat-card-header>
+            <mat-card-title>Register</mat-card-title>
+        </mat-card-header>
+        <br><br>
+        <form class="example-form" [formGroup]="registerForm">
+
+            <mat-card-content>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="First Name" formControlName="firstName" required>
+                    <mat-error *ngIf="registerForm.get('firstName').invalid">{{requiredGetErrorMessage('firstName')}}
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Last Name" formControlName="lastName" required>
+                    <mat-error *ngIf="registerForm.get('password').invalid">{{requiredGetErrorMessage('lastName')}}
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Email" formControlName="email" required>
+                    <mat-error *ngIf="registerForm.get('email').invalid">{{emailGetErrorMessage()}}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Password" formControlName="password"
+                        [type]="hide ? 'password' : 'text'" required>
+                    <mat-error *ngIf="registerForm.get('password').invalid">{{requiredGetErrorMessage('password')}}
+                    </mat-error>
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+
+            </mat-card-content>
+
+            <button mat-stroked-button color="accent" class="btn-block" (click)="register()">Register</button>
+
+        </form>
+    </mat-card>
+</div>

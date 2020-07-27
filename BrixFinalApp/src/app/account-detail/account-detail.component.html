@@ -1,0 +1,22 @@
+<br>
+<button class="btn btn-primary" (click)="logOut()">
+    Log Out
+</button>
+<br><br>
+<h2>{{welcome}}</h2>
+<br><br>
+<mat-card class="example-card">
+    <mat-card-content>        
+        <mat-card-title>Account Owner:</mat-card-title>
+        <br>
+        <mat-card-subtitle>{{account.firstName}} {{account.lastName}}</mat-card-subtitle>        
+        <mat-card-title>Open Date:</mat-card-title>
+        <br>
+        <mat-card-subtitle>{{account.openDate | date:'shortDate'}}</mat-card-subtitle>
+        <mat-card-title>Balance:</mat-card-title>
+        <br>
+        <mat-card-subtitle>{{account.balance}}</mat-card-subtitle>
+        <button mat-stroked-button color="accent" class="btn-block" (click)="createTransaction()">Create Transaction</button>
+
+    </mat-card-content>
+</mat-card>
