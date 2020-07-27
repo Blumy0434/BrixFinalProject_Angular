@@ -10,8 +10,10 @@ import { environment } from 'src/environments/environment';
 })
 export class TransactionService {
   constructor(private http:HttpClient) { }
-  createTransaction(transaction:ITransactionModel): Observable<boolean>{
-    debugger;
+  transactionStr:any;
+ 
+  createTransaction(transaction: ITransactionModel): Observable<boolean> {
+    //this.transactionStr=JSON.stringify(transaction);
     return this.http.post<boolean>(environment.createTransactionRoute, transaction);
   }
 }

@@ -15,12 +15,13 @@
             <mat-card-content>
                 <mat-form-field class="example-full-width">
                     <input matInput placeholder="To account" formControlName="toAccountId" required>
-                    <mat-error *ngIf="transactionForm.get('toAccount').invalid">{{toAccountGetErrorMessage()}}</mat-error>
+                    <mat-error *ngIf="transactionForm.get('toAccountId').invalid">{{toAccountGetErrorMessage()}}</mat-error>
                 </mat-form-field>
                 <mat-form-field class="example-full-width">
                     <input matInput placeholder="Amount" formControlName="amount" required>
-                        <mat-error *ngIf="transactionForm.get('amount').invalid">{{amountGetErrorMessage()}}</mat-error>
-             </mat-form-field>               
+                    <mat-hint align="end">Amount between 1 to 1M.</mat-hint>‏
+                    <mat-error *ngIf="transactionForm.get('amount').invalid">{{amountGetErrorMessage()}}</mat-error>
+                </mat-form-field>
             </mat-card-content>
             <button mat-stroked-button color="accent" class="btn-block" (click)="createTransaction()">Send</button>
             <br>

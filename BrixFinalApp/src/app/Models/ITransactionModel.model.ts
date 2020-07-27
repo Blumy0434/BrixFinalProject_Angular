@@ -1,5 +1,5 @@
 export interface ITransactionModel{
-    toAccountId:string,
     fromAccountId: string,
+    toAccountId:string,
     amount:number
 }

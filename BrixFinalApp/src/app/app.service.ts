@@ -13,21 +13,17 @@ import { environment } from '../environments/environment';
 })
 
 export class AppService {
-
-  endpoint: string = 'http://localhost:57951/api/Subscriber/';
-
+  
   constructor(private http: HttpClient) { }
 
   login(login: ILoginModel): Observable<string> {
     
     return this.http.post<string>(environment.loginRoute, login);
-
   }
   
   register(register: IRegisterModel): Observable<boolean> {
     
     return this.http.post<boolean>(environment.registerRoute, register);
-
   }
 
   getAccount(accountId: string): Observable<IAccountModel> {    

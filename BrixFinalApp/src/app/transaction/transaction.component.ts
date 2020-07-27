@@ -21,7 +21,7 @@ export class TransactionComponent implements OnInit {
   ngOnInit(): void {
     this.transactionForm = this.fb.group({
       toAccountId: ['', [Validators.required]],
-      amount: ['', [Validators.required], [Validators.max(1000000), [Validators.min(1)]]]
+      amount: [null, [Validators.required,Validators.max(1000000),Validators.min(1)]]
     })
     this._acr.paramMap.subscribe(params => {
       this.accountId = params.get("accountId");
@@ -29,7 +29,7 @@ export class TransactionComponent implements OnInit {
   }
 
   toAccountGetErrorMessage() {
-    if (this.transactionForm.get('toAccount').hasError('required')) {
+    if (this.transactionForm.get('toAccountId').hasError('required')) {
       return 'You must enter a value';
     }
   }
@@ -41,11 +41,15 @@ export class TransactionComponent implements OnInit {
     if (this.transactionForm.get('amount').hasError('min')) {
       return 'you can move at least one'
     }
+    if (this.transactionForm.get('amount').hasError('required')) {
+      return 'You must enter a value';
   }
+}
 
   createTransaction() {
     debugger;
-    this.transaction=this.transactionForm.get("toAccountId").value;
+    console.log(this.transactionForm.get("amount"));
+    this.transaction=this.transactionForm.value;
     this.transaction.amount=+this.transactionForm.get("amount").value;
     this.transaction.fromAccountId=this.accountId;
     //this.transaction.toAccountId=this.transactionForm.get("toAccount").value;
