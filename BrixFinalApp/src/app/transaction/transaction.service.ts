@@ -13,7 +13,6 @@ export class TransactionService {
   transactionStr:any;
  
   createTransaction(transaction: ITransactionModel): Observable<boolean> {
-    //this.transactionStr=JSON.stringify(transaction);
     return this.http.post<boolean>(environment.createTransactionRoute, transaction);
   }
 }

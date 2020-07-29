@@ -6,8 +6,9 @@ export const environment = {
   production: false,
   registerRoute:"http://localhost:58427/api/Login/register",
   loginRoute: "http://localhost:58427/api/Login/login",
-  getAccountRoute: "http://localhost:58427/api/Account/GetAccountInfo?guid=",
-  createTransactionRoute:"http://localhost:51125/api/Transaction/transaction"
+  getAccountRoute: "http://localhost:58427/api/Account/GetAccountInfo?accountId=",
+  createTransactionRoute:"http://localhost:51125/api/Transaction/transaction",
+  getOperationsList:"http://localhost:58427/api/OperationHistory/GetAccountHistory?"
 };
 
 /*

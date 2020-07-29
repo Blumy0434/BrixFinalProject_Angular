@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TransactionService } from '../transaction/transaction.service'
 import { ITransactionModel } from '../Models/ITRansactionModel.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-transaction',
@@ -11,6 +12,7 @@ import { ITransactionModel } from '../Models/ITRansactionModel.model';
 })
 export class TransactionComponent implements OnInit {
   
+  subscription: Subscription;
   transaction:ITransactionModel;
   transactionForm: FormGroup;
   accountId: string;
@@ -23,7 +25,7 @@ export class TransactionComponent implements OnInit {
       toAccountId: ['', [Validators.required]],
       amount: [null, [Validators.required,Validators.max(1000000),Validators.min(1)]]
     })
-    this._acr.paramMap.subscribe(params => {
+   this.subscription=this._acr.paramMap.subscribe(params => {
       this.accountId = params.get("accountId");
     });
   }
@@ -47,13 +49,9 @@ export class TransactionComponent implements OnInit {
 }
 
   createTransaction() {
-    debugger;
-    console.log(this.transactionForm.get("amount"));
-    this.transaction=this.transactionForm.value;
+   this.transaction=this.transactionForm.value;
     this.transaction.amount=+this.transactionForm.get("amount").value;
     this.transaction.fromAccountId=this.accountId;
-    //this.transaction.toAccountId=this.transactionForm.get("toAccount").value;
-    debugger;
     this._transactionService.createTransaction(this.transaction)
       .subscribe({
         next: isTransactionStarted => {
@@ -72,5 +70,8 @@ export class TransactionComponent implements OnInit {
         }
       })
   }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+}
 }
 

@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IRegisterModel } from '../Models/IRegisterModel.model';
 import { AppService } from '../app.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-open-account',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class OpenAccountComponent implements OnInit {
 
+  subscription: Subscription;
   registerForm: FormGroup;
   registerObject: IRegisterModel;
   hide = true;
@@ -28,9 +30,15 @@ export class OpenAccountComponent implements OnInit {
     })
   }
 
+ /* 
+ngOnDestroy() {
+  this.subscription.unsubscribe();
+}
+*/
+
   register() {
     this.registerObject = this.registerForm.value;    
-    this._appService.register(this.registerObject).subscribe({
+    this.subscription =this._appService.register(this.registerObject).subscribe({
       next:
         r => {
           if(r === true){
