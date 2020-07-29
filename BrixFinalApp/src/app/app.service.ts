@@ -27,6 +27,7 @@ export class AppService {
   }
 
   getAccount(accountId: string): Observable<IAccountModel> {    
+  debugger;
     return this.http.get<IAccountModel>(`${environment.getAccountRoute}${accountId}`);
   }
   

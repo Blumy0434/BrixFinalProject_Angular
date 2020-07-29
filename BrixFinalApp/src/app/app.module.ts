@@ -21,10 +21,12 @@ import { OpenAccountComponent } from './open-account/open-account.component';
 import { LoginComponent } from './login/login.component';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import { OperationHistoryComponent } from './operation-history/operation-history.component';
+import { OperationHistoryFilterComponent } from './operation-history-filter/operation-history-filter.component';
 
 @NgModule({
   declarations: [
-    AppComponent,LoginComponent, AccountDetailComponent, OpenAccountComponent, TransactionComponent   
+    AppComponent,LoginComponent, AccountDetailComponent, OpenAccountComponent, TransactionComponent, OperationHistoryComponent, OperationHistoryFilterComponent   
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,7 @@ import { TransactionComponent } from './transaction/transaction.component';
     HttpClientModule,    
     RouterModule.forRoot([
       {path: 'home', component: LoginComponent},
+      {path: 'operations/:accountId', component: OperationHistoryComponent},
       {path: 'register', component: OpenAccountComponent},   
       {path: 'accountDetail/:accountId', component: AccountDetailComponent}, 
       {path: 'accountDetail', component: AccountDetailComponent},  

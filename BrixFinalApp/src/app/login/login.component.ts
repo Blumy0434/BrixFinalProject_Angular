@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AppService } from '../app.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  subscription: Subscription;
   pageTitle = 'Welcome';
   hide = true;
   loginForm: FormGroup;
@@ -25,7 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this._appService.login(this.loginForm.value).subscribe({
+    this.subscription=this._appService.login(this.loginForm.value).subscribe({
       next: accountId => {
         this.loginForm.reset();
         if (accountId != null) {
@@ -55,4 +57,9 @@ export class LoginComponent implements OnInit {
       return 'You must enter a value';
     }
   }
+/*
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+}
+*/
 }
