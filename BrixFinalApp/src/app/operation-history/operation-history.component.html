@@ -8,31 +8,27 @@
 
 
 <mat-table class="table table-striped" [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="accountId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>AccountId</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.accountId}} </mat-cell>
+    </ng-container>
     <ng-container matColumnDef="operationType">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>operationType</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Debit/Credit</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.operationType}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="toAccountId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>toAccountId</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.toAccountId}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="fromAccountId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>fromAccountId</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.fromAccountId}} </mat-cell>
-    </ng-container>
+    </ng-container>  
     <ng-container matColumnDef="amount">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>amount</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Amount</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.amount}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="balance">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>balance</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Balance</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.balance}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="date">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>date</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.date}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.date | date:'shortDate'}} </mat-cell>
     </ng-container>
-    <mat-header-row *matHeaderRowDef="thArray"></mat-header-row>
+    <mat-header-row *matHeaderRowDef="thArray" (click)="SortByTitle($event)"></mat-header-row>
     <mat-row *matRowDef="let row; columns: thArray;"> </mat-row>
 </mat-table>
 <br>
