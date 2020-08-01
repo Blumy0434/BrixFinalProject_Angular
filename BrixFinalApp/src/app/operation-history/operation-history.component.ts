@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { OperationHistoryService } from './operation-history.service'
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ITransactionModel } from '../Models/ITRansactionModel.model';
 
 @Component({
   selector: 'app-operation-history',
@@ -22,26 +23,49 @@ export class OperationHistoryComponent implements OnInit {
 
   public paginationModel: IPaginationModel = new IPaginationModel();
   operationsFilteredList: IOperationModel[];
-  public thArray: string[] = ['accountId','operationType', 'amount', 'balance', 'date'];
+  public thArray: string[] = ['accountId','operationType', 'amount', 'balance', 'date','transactionId'];
   public dataSource: MatTableDataSource<IOperationModel>;
   title : string;
   titleName: string;
   totalCount: number;
+  column:string;
   subscription: Subscription;
   accountId: string;
+  transactionId:string;
+  transactionDetailesClicked:boolean=false;
+  transactionInfo:ITransactionModel;
+
+
   ngOnInit(): void {
     this._acr.paramMap.subscribe(params => {
       this.accountId = params.get("accountId");      
     });
     this.subscription = this._operationService.getAll(this.paginationModel, this.accountId)
       .subscribe((result: any) => {
-        debugger;
         this.totalCount = JSON.parse(result.headers.get('X-Pagination')).totalCount;
+        this.transactionId=(result.body.transactionId);
         this.dataSource = new MatTableDataSource<IOperationModel>(result.body);
         this.dataSource.paginator = this.pathPaginator;
         this.dataSource.sort = this.sort;
       });
   }
+
+  transactionDetails(trnsaction: string){
+    if(this.transactionId==trnsaction){
+      this.transactionDetailesClicked=false;
+      this.transactionId='';
+    }    
+    else{
+ this.transactionId=trnsaction;
+ this.transactionDetailesClicked=true;
+  this._operationService.getTransactionInfo(trnsaction).subscribe({
+  next: info => {
+    this.transactionInfo= info;      
+  },
+  error: err => console.log(err)
+});
+} 
+} 
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim();

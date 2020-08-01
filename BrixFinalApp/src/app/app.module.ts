@@ -22,11 +22,10 @@ import { LoginComponent } from './login/login.component';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { OperationHistoryComponent } from './operation-history/operation-history.component';
-import { OperationHistoryFilterComponent } from './operation-history-filter/operation-history-filter.component';
 
 @NgModule({
   declarations: [
-    AppComponent,LoginComponent, AccountDetailComponent, OpenAccountComponent, TransactionComponent, OperationHistoryComponent, OperationHistoryFilterComponent   
+    AppComponent,LoginComponent, AccountDetailComponent, OpenAccountComponent, TransactionComponent, OperationHistoryComponent   
   ],
   imports: [
     BrowserModule,
