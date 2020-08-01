@@ -9,8 +9,8 @@ export const environment = {
   getAccountRoute: "http://localhost:58427/api/Account/GetAccountInfo?accountId=",
   createTransactionRoute:"http://localhost:51125/api/Transaction/transaction",
   getOperationsList:"http://localhost:58427/api/OperationHistory/GetAccountHistory?",
-  getTransactionDetails:"http://localhost:51125/api/TransactionInfo/transactionInfo?transactionId="
-  
+  getTransactionDetails:"http://localhost:51125/api/TransactionInfo/transactionInfo?transactionId=",
+  getFilterTransactionsList:"http://localhost:58427/api/OperationHistory/GetAccountHistory?"
 
 };
 

@@ -1,6 +1,5 @@
-
 <br><br>
-   <!--
+<!--
        --here we need to add filter
 <div class="example-header">
 
@@ -9,9 +8,21 @@
     </mat-form-field>
     </div>
 
-   --> 
-
-
+   -->
+<form [formGroup]="filterForm">
+    <mat-form-field appearance="fill">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+            <input formControlName="fromDate" matStartDate placeholder="Start date">
+            <input formControlName="toDate" matEndDate placeholder="End date">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+    <br>
+    <button class="btn btn-primary mr-3" style="width:120px" (click)='filterData()'>Filter</button>    
+</form>
+<br>
 <mat-table class="table table-striped" [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="accountId">
         <mat-header-cell *matHeaderCellDef mat-sort-header>AccountId</mat-header-cell>
@@ -19,8 +30,8 @@
     </ng-container>
     <ng-container matColumnDef="operationType">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Debit/Credit</mat-header-cell>
-        <mat-cell *matCellDef="let row" > {{row.operationType}} </mat-cell>
-    </ng-container>  
+        <mat-cell *matCellDef="let row"> {{row.operationType}} </mat-cell>
+    </ng-container>
     <ng-container matColumnDef="amount">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Amount</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.amount}} </mat-cell>
@@ -31,7 +42,7 @@
     </ng-container>
     <ng-container matColumnDef="date">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.date | date:'shortDate'}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.date | date:'short'}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="transactionId">
         <mat-header-cell *matHeaderCellDef mat-sort-header>TransactionId</mat-header-cell>
@@ -40,25 +51,24 @@
     <mat-header-row *matHeaderRowDef="thArray" (click)="SortByTitle($event)"></mat-header-row>
     <mat-row *matRowDef="let row; columns: thArray;" (click)="transactionDetails(row.transactionId)"> </mat-row>
 </mat-table>
-<div  *ngIf=transactionDetailesClicked>
+<div *ngIf=transactionDetailesClicked>
     <mat-card class="example-card" style="display: inline-block; width: 100%;" *ngIf=transactionDetailesClicked>
-      <mat-card-header>
-          <i class="fa fa-user fa-5x" aria-hidden="true" style="position: relative; margin-left: 46%; margin-right: 46%;"></i>
-      </mat-card-header>
+        <mat-card-header>
+            <i class="fa fa-user fa-5x" aria-hidden="true"
+                style="position: relative; margin-left: 46%; margin-right: 46%;"></i>
+        </mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>Transaction Details</mat-card-title>
         <mat-card-subtitle></mat-card-subtitle>
         <mat-card-subtitle> From Account: {{transactionInfo.fromAccountId}}</mat-card-subtitle>
-          <mat-card-subtitle> To Account: {{transactionInfo.toAccountId}}</mat-card-subtitle>
-            <mat-card-subtitle>Date: {{transactionInfo.date}}</mat-card-subtitle>
-              <mat-card-subtitle>Amount: {{transactionInfo.amount}}</mat-card-subtitle>
-            </mat-card>
-    </div>
+        <mat-card-subtitle> To Account: {{transactionInfo.toAccountId}}</mat-card-subtitle>
+        <mat-card-subtitle>Date: {{transactionInfo.date}}</mat-card-subtitle>
+        <mat-card-subtitle>Amount: {{transactionInfo.amount}}</mat-card-subtitle>
+    </mat-card>
+</div>
 <mat-paginator [length]="totalCount" [pageSize]="paginationModel.pageSize"
     [pageSizeOptions]="paginationModel.selectItemsPerPage" (page)="switchPage($event)">
 </mat-paginator>
-<br><br><br><br><br><br>
 
 
-<!-- <mat-paginator [pageSizeOptions]="[5, 10, 15, 25]">
-</mat-paginator> -->
+

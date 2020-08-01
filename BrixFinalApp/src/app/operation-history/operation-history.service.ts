@@ -35,6 +35,14 @@ export class OperationHistoryService {
     return this.http.get<any>(this.mergedUrl, { observe: 'response' });
   }
 
+getFilterTransaction(queryParameters: string): Observable<any> {  
+ 
+  console.log(`${environment.getFilterTransactionsList}${queryParameters}`);
+  debugger;
+    return this.http.get<any>(`${environment.getFilterTransactionsList}` +`${queryParameters}`);
+  }
+
+
   getTransactionInfo(id:string): Observable<ITransactionModel>{
     return this.http.get<ITransactionModel>(`${environment.getTransactionDetails}${id}`);
   }
