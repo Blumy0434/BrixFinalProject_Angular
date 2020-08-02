@@ -6,7 +6,6 @@
         </mat-card-header>
         <br><br>
         <form class="example-form" [formGroup]="registerForm">
-
             <mat-card-content>
                 <mat-form-field class="example-full-width">
                     <input matInput placeholder="First Name" formControlName="firstName" required>
@@ -16,7 +15,7 @@
 
                 <mat-form-field class="example-full-width">
                     <input matInput placeholder="Last Name" formControlName="lastName" required>
-                    <mat-error *ngIf="registerForm.get('password').invalid">{{requiredGetErrorMessage('lastName')}}
+                    <mat-error *ngIf="registerForm.get('lastName').invalid">{{requiredGetErrorMessage('lastName')}}
                     </mat-error>
                 </mat-form-field>
 
@@ -35,11 +34,21 @@
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
                 </mat-form-field>
-
             </mat-card-content>
-
-            <button mat-stroked-button color="accent" class="btn-block" (click)="register()">Register</button>
-
+            <button mat-stroked-button color="accent" class="btn-block" (click)="verifyEmail()">Register</button>
+            
+            <div *ngIf="verifyEmailDiv">
+                <mat-form-field class="example-full-width" >
+                    <input matInput placeholder="Verification code" formControlName="verificationCode" required>
+                    <mat-error *ngIf="registerForm.get('verificationCode').invalid">{{requiredGetErrorMessage('verificationCode')}}
+                    </mat-error>
+                </mat-form-field>
+                <button class="btn btn-primary mr-3" (click)="register()">Verify Email</button> 
+                <br><br>
+                <button class="btn btn-primary mr-3" (click)="verifyEmail()">Send Code Again</button>                 
+            </div>            
         </form>
-    </mat-card>
+    </mat-card>    
 </div>
+<!-- <app-verification-code (verifyCodeEvent)="register($event)">
+</app-verification-code> -->

@@ -23,6 +23,7 @@ import { AccountDetailComponent } from './account-detail/account-detail.componen
 import { TransactionComponent } from './transaction/transaction.component';
 import { OperationHistoryComponent } from './operation-history/operation-history.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,LoginComponent, AccountDetailComponent, OpenAccountComponent, TransactionComponent, OperationHistoryComponent   
