@@ -7,40 +7,42 @@
         </mat-card-header>
         <br><br>
         <form class="example-form" [formGroup]="registerForm">
-            <mat-card-content>
-                <mat-form-field class="example-full-width">
-                    <input matInput placeholder="First Name" formControlName="firstName" required>
-                    <mat-error *ngIf="registerForm.get('firstName').invalid">{{requiredGetErrorMessage('firstName')}}
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Last Name" formControlName="lastName" required>
-                    <mat-error *ngIf="registerForm.get('lastName').invalid">{{requiredGetErrorMessage('lastName')}}
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Email" formControlName="email" required>
-                    <mat-error *ngIf="registerForm.get('email').invalid">{{emailGetErrorMessage()}}</mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Password" formControlName="password"
-                        [type]="hide ? 'password' : 'text'" required>
-                    <mat-error *ngIf="registerForm.get('password').invalid">{{requiredGetErrorMessage('password')}}
-                    </mat-error>
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                        [attr.aria-pressed]="hide">
-                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
-                </mat-form-field>
-            </mat-card-content>
-            <button mat-stroked-button color="accent" class="btn-block" (click)="verifyEmail()">Register</button>
-            
+            <div *ngIf="registerDiv">
+                <mat-card-content>
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="First Name" formControlName="firstName" required>
+                        <mat-error *ngIf="registerForm.get('firstName').invalid">{{requiredGetErrorMessage('firstName')}}
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Last Name" formControlName="lastName" required>
+                        <mat-error *ngIf="registerForm.get('lastName').invalid">{{requiredGetErrorMessage('lastName')}}
+                        </mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Email" formControlName="email" required>
+                        <mat-error *ngIf="registerForm.get('email').invalid">{{emailGetErrorMessage()}}</mat-error>
+                    </mat-form-field>
+    
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Password" formControlName="password"
+                            [type]="hide ? 'password' : 'text'" required>
+                        <mat-error *ngIf="registerForm.get('password').invalid">{{requiredGetErrorMessage('password')}}
+                        </mat-error>
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </mat-card-content>
+                <button mat-stroked-button color="accent" class="btn-block" (click)="verifyEmail()">Register</button>
+                
+            </div>
             <div *ngIf="verifyEmailDiv">
                 <mat-form-field class="example-full-width" >
-                    <input matInput placeholder="Verification code" formControlName="verificationCode" required>
+                    <input matInput placeholder="Enter your verification code" formControlName="verificationCode" required>
                     <mat-error *ngIf="registerForm.get('verificationCode').invalid">{{requiredGetErrorMessage('verificationCode')}}
                     </mat-error>
                 </mat-form-field>

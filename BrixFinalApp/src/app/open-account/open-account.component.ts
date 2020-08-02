@@ -19,6 +19,7 @@ export class OpenAccountComponent implements OnInit {
   registerObject: IRegisterModel;
   hide: boolean = true;
   verifyEmailDiv: boolean = false;
+  registerDiv: boolean = true;
   // isDisabled: boolean = false;
   sendEmailObj: ISendEmailModel = new ISendEmailModel();
   constructor(private fb: FormBuilder, private _appService: AppService, private _router: Router,
@@ -43,9 +44,9 @@ export class OpenAccountComponent implements OnInit {
     }
   }
 
-  verifyEmail() {
-    
-    this.verifyEmailDiv = true;
+  verifyEmail() { 
+    this.registerDiv = false; 
+    this.verifyEmailDiv = true;       
     this.sendEmailObj.email = this.registerForm.get('email').value;
     this._openAccountService.sendEmailWithVerificationCode(this.sendEmailObj).subscribe({
       next: r => {
@@ -56,6 +57,7 @@ export class OpenAccountComponent implements OnInit {
   }
 
   register() {  
+    this.registerDiv = true;
     this.verifyEmailDiv = false;
     this.registerObject = this.registerForm.value;
     this.subscription = this._appService.register(this.registerObject).subscribe({
@@ -63,6 +65,7 @@ export class OpenAccountComponent implements OnInit {
         r => {
           if (r === true) {
             alert("Register succeeded!");
+            this.verifyEmailDiv = true;
             this.registerForm.reset();
             this._router.navigate(["/home"])
           }
