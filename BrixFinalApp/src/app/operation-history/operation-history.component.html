@@ -19,8 +19,39 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
     </mat-form-field>
+    <!-- <mat-form-field appearance="fill">
+        <mat-label>Debit/ Credit</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let operationType of operations" [value]="operationType.value">
+            {{operationType.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field> -->
+      <!-- <section class="example-section">
+        <span class="example-list-section">
+          <mat-checkbox class="example-margin"
+                        [checked]="allComplete"
+                        [indeterminate]="someComplete()"
+                        (change)="setAll($event.checked)">
+            {{operations.name}}
+          </mat-checkbox>
+        </span>
+        <span class="example-list-section">
+          <ul>
+            <li *ngFor="let suboperations of task.operations">
+              <mat-checkbox [(ngModel)]="suboperations.completed"
+                            [color]="suboperations.color"
+                            (ngModelChange)="updateAllComplete()">
+                {{suboperations.name}}
+              </mat-checkbox>
+            </li>
+          </ul>
+        </span>
+      </section> -->
     <br>
-    <button class="btn btn-primary mr-3" style="width:120px" (click)='filterData()'>Filter</button>    
+    <button class="btn btn-primary mr-3" style="width:120px" (click)='filterData()'>Filter</button> &nbsp;&nbsp;
+    <button class="btn btn-primary mr-3" style="width:120px" (click)='filterDebit()'>Filter Debit</button> &nbsp;&nbsp;
+    <button class="btn btn-primary mr-3" style="width:120px" (click)='filterCredit()'>Filter Credit</button>
 </form>
 <br>
 <mat-table class="table table-striped" [dataSource]="dataSource" matSort>
@@ -43,11 +74,7 @@
     <ng-container matColumnDef="date">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.date | date:'short'}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="transactionId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>TransactionId</mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.transactionId}} </mat-cell>
-    </ng-container>
+    </ng-container>    
     <mat-header-row *matHeaderRowDef="thArray" (click)="SortByTitle($event)"></mat-header-row>
     <mat-row *matRowDef="let row; columns: thArray;" (click)="transactionDetails(row.transactionId)"> </mat-row>
 </mat-table>

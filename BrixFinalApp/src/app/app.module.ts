@@ -13,8 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatPaginatorModule} from '@angular/material/paginator'
-import {MatTableModule} from '@angular/material/table'
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import {MatIconModule} from '@angular/material/icon';
 import { OpenAccountComponent } from './open-account/open-account.component';
@@ -22,7 +22,7 @@ import { LoginComponent } from './login/login.component';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { OperationHistoryComponent } from './operation-history/operation-history.component';
-
+import { MatCheckbox } from '@angular/material/CheckBox';
 
 @NgModule({
   declarations: [
@@ -31,8 +31,9 @@ import { OperationHistoryComponent } from './operation-history/operation-history
   imports: [
     BrowserModule,
     MatSliderModule,
-    MatDatepickerModule,
+    MatDatepickerModule,    
     AppRoutingModule,
+    //MatCheckbox,
     HttpClientModule,    
     RouterModule.forRoot([
       {path: 'home', component: LoginComponent},

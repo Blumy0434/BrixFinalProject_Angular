@@ -23,20 +23,20 @@ export class OperationHistoryService {
 
   getAll(paginationModel: IPaginationModel, accountId: string): Observable<any> {    
     if (paginationModel.sortBy != undefined) {
-      this.mergedUrl = `${environment.getOperationsList}` +
+      this.mergedUrl = `${environment.getFilterTransactionsList}` +
         `page=${paginationModel.pageIndex}&pageCount=${paginationModel.pageSize}
       &OrderBy=${paginationModel.sortBy}&accountId=${accountId}`;
     }
     else {
-      this.mergedUrl = `${environment.getOperationsList}` +
+      this.mergedUrl = `${environment.getFilterTransactionsList}` +
         `page=${paginationModel.pageIndex}&pageCount=${paginationModel.pageSize}
         &accountId=${accountId}`;
     }
+    debugger;
     return this.http.get<any>(this.mergedUrl, { observe: 'response' });
   }
 
-getFilterTransaction(queryParameters: string): Observable<any> {  
- 
+getFilterTransaction(queryParameters: string): Observable<any> { 
   console.log(`${environment.getFilterTransactionsList}${queryParameters}`);
     return this.http.get<any>(`${environment.getFilterTransactionsList}` +`${queryParameters}`);
   }

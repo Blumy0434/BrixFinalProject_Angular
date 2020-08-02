@@ -25,7 +25,7 @@ export class OperationHistoryComponent implements OnInit {
 
   public paginationModel: IPaginationModel = new IPaginationModel();
   operationsFilteredList: IOperationModel[];
-  public thArray: string[] = ['accountId', 'operationType', 'amount', 'balance', 'date', 'transactionId'];
+  public thArray: string[] = ['accountId', 'operationType', 'amount', 'balance', 'date'];
   public dataSource: MatTableDataSource<IOperationModel>;
   title: string;
   titleName: string;
@@ -38,7 +38,43 @@ export class OperationHistoryComponent implements OnInit {
   transactionInfo: ITransactionModel;
   filterForm: FormGroup;
   filterDetails: any;
+  // operations: any[] = [
+  //   {value: 'steak-0', viewValue: 'Steak'},
+  //   {value: 'pizza-1', viewValue: 'Pizza'},
+  //   {value: 'tacos-2', viewValue: 'Tacos'}
+  // ];
+//  operations: string[] = ["Debit", "Credit"];
 
+  // operations: any = {
+  //   name: 'All',
+  //   completed: false,
+  //   color: 'primary',
+  //   suboperations: [
+  //     {name: 'Debit', completed: false, color: 'red'},
+  //     {name: 'Credit', completed: false, color: 'green'}      
+  //   ]
+  // };
+
+  // allComplete: boolean = false;
+
+  // updateAllComplete() {
+  //   this.allComplete = this.operations.suboperations != null && this.operations.suboperations.every(t => t.completed);
+  // }
+
+  // someComplete(): boolean {
+  //   if (this.operations.suboperations == null) {
+  //     return false;
+  //   }
+  //   return this.operations.suboperations.filter(t => t.completed).length > 0 && !this.allComplete;
+  // }
+
+  // setAll(completed: boolean) {
+  //   this.allComplete = completed;
+  //   if (this.operations.suboperations == null) {
+  //     return;
+  //   }
+  //   this.operations.suboperations.forEach(t => t.completed = completed);
+  // }
   ngOnInit(): void {
     this.filterForm = this.fb.group({
       fromDate: '',
