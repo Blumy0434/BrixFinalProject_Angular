@@ -5,6 +5,7 @@ import { AppService } from '../app.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { OpenAccountService } from './open-account.service';
+import { ISendEmailModel } from '../Models/ISendEmailModel.model';
 
 @Component({
   selector: 'app-open-account',
@@ -19,7 +20,7 @@ export class OpenAccountComponent implements OnInit {
   hide: boolean = true;
   verifyEmailDiv: boolean = false;
   // isDisabled: boolean = false;
-
+  sendEmailObj: ISendEmailModel = new ISendEmailModel();
   constructor(private fb: FormBuilder, private _appService: AppService, private _router: Router,
     private _openAccountService: OpenAccountService) {
 
@@ -37,21 +38,24 @@ export class OpenAccountComponent implements OnInit {
 
 
   ngOnDestroy() {
-    if(this.subscription){
+    if (this.subscription) {
       this.subscription.unsubscribe();
-    }    
+    }
   }
 
-  verifyEmail(){
-    console.log(this.registerForm.get('email').value);
-    debugger;
+  verifyEmail() {
+    
     this.verifyEmailDiv = true;
-    this._openAccountService.sendEmailWithVerificationCode(this.registerForm.get('email').value);
+    this.sendEmailObj.email = this.registerForm.get('email').value;
+    this._openAccountService.sendEmailWithVerificationCode(this.sendEmailObj).subscribe({
+      next: r => {
+        alert("Email with verification code sent now!");
+      },
+      error: err => alert(err)
+    });
   }
 
-  register() {
-    debugger;
-    this.registerForm.reset();
+  register() {  
     this.verifyEmailDiv = false;
     this.registerObject = this.registerForm.value;
     this.subscription = this._appService.register(this.registerObject).subscribe({
@@ -59,11 +63,16 @@ export class OpenAccountComponent implements OnInit {
         r => {
           if (r === true) {
             alert("Register succeeded!");
+            this.registerForm.reset();
             this._router.navigate(["/home"])
           }
           else {
             alert("Register failed! One or more of your details are wrong.Try again!");
           }
+        },
+        error: err => {
+          debugger;
+          alert(err.error.error);
         }
     })
   }

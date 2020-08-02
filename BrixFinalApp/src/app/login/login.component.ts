@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
       next: accountId => {
         this.loginForm.reset();
         if (accountId != null) {
-          debugger;
           this._router.navigate(["/accountDetail", accountId]);
         }
         else {

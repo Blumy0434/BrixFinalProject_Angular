@@ -25,7 +25,6 @@ export class AccountDetailComponent implements OnInit {
    });
 
    if (this.accountId) {
-     debugger;
      this.subscription=this._appService.getAccount(this.accountId).subscribe({
        next: card => {
          this.welcome+= ` ${card.firstName} ${card.lastName}`

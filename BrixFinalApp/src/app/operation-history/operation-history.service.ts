@@ -38,7 +38,6 @@ export class OperationHistoryService {
 getFilterTransaction(queryParameters: string): Observable<any> {  
  
   console.log(`${environment.getFilterTransactionsList}${queryParameters}`);
-  debugger;
     return this.http.get<any>(`${environment.getFilterTransactionsList}` +`${queryParameters}`);
   }
 

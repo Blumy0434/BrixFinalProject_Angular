@@ -96,12 +96,10 @@ export class OperationHistoryComponent implements OnInit {
       filterQueryString += this.addFromDateToFilterQuery(filterQueryString, this.filterDetails.fromDate);
     }
     if (this.filterDetails.toDate != '' && this.filterDetails.toDate != null) {
-      debugger;
       filterQueryString += this.addToDateToFilterQuery(filterQueryString, this.filterDetails.toDate);
     }
     this._operationService.getFilterTransaction(filterQueryString)
       .subscribe((result: any) => {
-        debugger;        
         this.dataSource = result;
       });
       filterQueryString = `AccountId=${this.accountId}`;
