@@ -11,7 +11,7 @@ export const environment = {
   getOperationsList:"http://localhost:58427/api/OperationHistory/GetAccountHistory?",
   getTransactionDetails:"http://localhost:51125/api/TransactionInfo/transactionInfo?transactionId=",
   getFilterTransactionsList:"http://localhost:58427/api/OperationHistory/GetAccountHistory?",
-  postToVerifyMail:"http://localhost:58427/api/"
+  postToVerifyMail:"http://localhost:58427/api/Login/sendEmail"
 
 };
 

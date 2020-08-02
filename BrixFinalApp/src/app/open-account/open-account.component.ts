@@ -51,6 +51,7 @@ export class OpenAccountComponent implements OnInit {
 
   register() {
     debugger;
+    this.registerForm.reset();
     this.verifyEmailDiv = false;
     this.registerObject = this.registerForm.value;
     this.subscription = this._appService.register(this.registerObject).subscribe({
