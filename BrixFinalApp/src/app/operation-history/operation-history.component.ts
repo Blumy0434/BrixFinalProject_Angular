@@ -92,10 +92,11 @@ export class OperationHistoryComponent implements OnInit {
   filterData() {
     let filterQueryString: string = `AccountId=${this.accountId}`;
     this.filterDetails = this.filterForm.value;
-    if (this.filterDetails.fromDate != '') {
+    if (this.filterDetails.fromDate != '' && this.filterDetails.fromDate != null) {
       filterQueryString += this.addFromDateToFilterQuery(filterQueryString, this.filterDetails.fromDate);
     }
-    if (this.filterDetails.toDate != '') {
+    if (this.filterDetails.toDate != '' && this.filterDetails.toDate != null) {
+      debugger;
       filterQueryString += this.addToDateToFilterQuery(filterQueryString, this.filterDetails.toDate);
     }
     this._operationService.getFilterTransaction(filterQueryString)
@@ -107,12 +108,11 @@ export class OperationHistoryComponent implements OnInit {
       this.filterForm.reset();
   }
 
-  addFromDateToFilterQuery(filterQueryString, fromDate): string{ 
-    
+  addFromDateToFilterQuery(filterQueryString, fromDate): string{     
       return `&Query.FromDate=${fromDate.toJSON()}`;   
   }
 
-  addToDateToFilterQuery(filterQueryString, toDate): string{       
+  addToDateToFilterQuery(filterQueryString, toDate): string{         
       return `&Query.ToDate=${toDate.toJSON()}`;    
   }
 
